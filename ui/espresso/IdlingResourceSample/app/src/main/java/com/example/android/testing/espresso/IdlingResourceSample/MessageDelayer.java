@@ -30,7 +30,7 @@ import com.example.android.testing.espresso.IdlingResourceSample.IdlingResource.
  */
 class MessageDelayer {
 
-    private static final int DELAY_MILLIS = 3000;
+    private static final int DELAY_MILLIS = 10000;
 
     interface DelayerCallback {
         void onDone(String text);
