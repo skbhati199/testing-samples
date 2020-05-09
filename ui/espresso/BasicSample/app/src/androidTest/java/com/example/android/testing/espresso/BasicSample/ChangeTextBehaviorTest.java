@@ -48,11 +48,9 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class ChangeTextBehaviorTest {
 
     public static final String STRING_TO_BE_TYPED = "Espresso";
+    public static final String STRING_TO_BE_TYPED_HELLO = "Hello";
 
-    /**
-     * Use {@link ActivityScenarioRule} to create and launch the activity under test, and close it
-     * after test completes. This is a replacement for {@link androidx.test.rule.ActivityTestRule}.
-     */
+
     @Rule public ActivityScenarioRule<MainActivity> activityScenarioRule
             = new ActivityScenarioRule<>(MainActivity.class);
 
@@ -76,5 +74,23 @@ public class ChangeTextBehaviorTest {
 
         // This view is in a different Activity, no need to tell Espresso.
         onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)));
+    }
+
+    @Test
+    public void changeText_testActivity(){
+
+        // Type text and then press the button.
+        onView(withId(R.id.editTextUserInput)).perform(typeText(STRING_TO_BE_TYPED),
+                closeSoftKeyboard());
+        onView(withId(R.id.activityChangeTextBtn)).perform(click());
+
+//        / This view is in a different Activity, no need to tell Espresso.
+//        onView(withId(R.id.show_text_view)).check(matches(withText(STRING_TO_BE_TYPED)));
+
+        onView(withId(R.id.hello)).perform(typeText(STRING_TO_BE_TYPED_HELLO), closeSoftKeyboard());
+
+        onView(withId(R.id.showTest)).perform(click());
+        String test = STRING_TO_BE_TYPED_HELLO+STRING_TO_BE_TYPED;
+        onView(withId(R.id.test_view)).check(matches(withText(test)));
     }
 }

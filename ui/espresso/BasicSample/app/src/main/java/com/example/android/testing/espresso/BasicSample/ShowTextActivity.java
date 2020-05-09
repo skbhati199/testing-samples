@@ -22,6 +22,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -40,10 +42,20 @@ public class ShowTextActivity extends Activity {
 
         // Get the message from the Intent.
         Intent intent = getIntent();
-        String message = Strings.nullToEmpty(intent.getStringExtra(KEY_EXTRA_MESSAGE));
+        final String message = Strings.nullToEmpty(intent.getStringExtra(KEY_EXTRA_MESSAGE));
 
         // Show message.
         ((TextView)findViewById(R.id.show_text_view)).setText(message);
+
+        findViewById(R.id.showTest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText helloEditText = findViewById(R.id.hello);
+                String helloText = helloEditText.getText().toString();
+                String finalText = helloText + message;
+                startActivity(newStartTestIntent(ShowTextActivity.this,finalText));
+            }
+        });
     }
 
     /**
@@ -54,6 +66,12 @@ public class ShowTextActivity extends Activity {
      */
     static protected Intent newStartIntent(Context context, String message) {
         Intent newIntent = new Intent(context, ShowTextActivity.class);
+        newIntent.putExtra(KEY_EXTRA_MESSAGE, message);
+        return newIntent;
+    }
+
+    static protected Intent newStartTestIntent(Context context, String message) {
+        Intent newIntent = new Intent(context, TestActivity.class);
         newIntent.putExtra(KEY_EXTRA_MESSAGE, message);
         return newIntent;
     }

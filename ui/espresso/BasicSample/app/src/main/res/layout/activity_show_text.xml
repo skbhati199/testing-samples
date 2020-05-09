@@ -14,10 +14,11 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
+    android:orientation="vertical"
              tools:context=".ShowTextActivity">
 
     <TextView
@@ -27,4 +28,25 @@
             android:text="@string/hello_world"
             android:layout_gravity="center"/>
 
-</merge>
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:hint="Hello"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:id="@+id/hello"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/showTest"
+        android:layout_marginTop="20dp"
+        android:focusable="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
+        android:text="Show Test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:targetApi="lollipop" />
+
+</LinearLayout>
